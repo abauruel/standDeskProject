@@ -8,6 +8,8 @@ target 'myStandDesk' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'react-native-ble-plx', :path => '../node_modules/react-native-ble-plx'
+
   target 'myStandDeskTests' do
     inherit! :complete
     # Pods for testing
