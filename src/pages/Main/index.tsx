@@ -7,8 +7,9 @@ import  {convertString}  from 'convert-string'
 const BleManagerModule = NativeModules.BleManager
 const bleManagerEmitter = new NativeEventEmitter(BleManagerModule);
 
-const SERVICE_UUID = ''
-const CHARACTERISTIC_UUID =''
+const PERIPHERALID = 'A4:CF:12:61:50:2A'
+const SERVICE_UUID = '4fafc201-1fb5-459e-8fcc-c5c9c331914b'
+const CHARACTERISTIC_UUID ='beb5483e-36e1-4688-b7f5-ea07361b26a8'
 
 const Main: React.FC = () => {
   const [goingUp, setGoingUp] = useState(false)
@@ -136,9 +137,9 @@ return()=>{
         // Success code
 
           BleManager.startNotification(
-            'A4:CF:12:61:50:2A',
-            "4fafc201-1fb5-459e-8fcc-c5c9c331914b",
-            "beb5483e-36e1-4688-b7f5-ea07361b26a8").then((value)=>
+           PERIPHERALID,
+            SERVICE_UUID,
+            CHARACTERISTIC_UUID).then((value)=>
             console.log("Read ",value))
             .catch((error)=>console.log("falha ",error))
 
@@ -154,7 +155,7 @@ return()=>{
   }
 
   const handleConnect =()=>{
-    BleManager.connect('A4:CF:12:61:50:2A').then((value)=>{
+    BleManager.connect(PERIPHERALID).then((value)=>{
       setDeviceConnected(true)
       //handleCreateBond('A4:CF:12:61:50:2A')
     }).catch((error)=>{
